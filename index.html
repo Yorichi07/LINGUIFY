@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Linguify</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap-icons.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/styles.css?4282">
+</head>
+<body>
+
+	
+	<section class="class_1" >
+		<div class="class_2" >
+			<h1 class="class_3"  >
+				Linguify
+				<br >
+			</h1>
+			<div class="class_4"  >
+				Welcome to Linguify, a secure AWS based web-application. Linguify combines AWS services and intuitive user interfaces to provide a seamless experience for tasks such as text-to-speech conversion, sentiment analysis, language translation, and image text extraction. With Linguify, you can effortlessly convert text into natural-sounding speech using Amazon Polly, analyze the sentiment of text using Amazon Comprehend, translate text into multiple languages using AWS Translate, and extract text from images using Amazon Textract. Whether you're looking to enhance accessibility, gain insights from text data, or break language barriers, Linguify has you covered. Built with scalability and reliability in mind, Linguify leverages the power of AWS services and serverless architecture to ensure high performance and availability. Our clean and intuitive interface makes it easy for users to input text, choose desired functionalities, and receive instant results.
+			</div>
+			<img src="assets/images/site-stats-concept-illustration_114360-1434.webp" class="class_5" >
+		</div>
+	</section>
+	<section class="class_6" >
+		<div class="class_7" >
+			<div class="class_8" >
+				<h1 class="class_9"  >
+					Text to Speech
+					<br >
+				</h1>
+				<div class="class_10"  >
+					Text-to-Speech (TTS) functionality seamlessly converts written text into lifelike speech, enhancing accessibility and user experiences. With just a click, transform text-based content into audio format, enabling hands-free consumption of articles, messages, and more. Experience the convenience and accessibility of TTS, revolutionizing the way we interact with information.
+				</div>
+			</div>
+			<div class="class_11" >
+				<form enctype="multipart/form-data" class="class_12" >
+					<div class="class_13" >
+						<label class="class_14"  >
+							Text:
+						</label>
+						<input placeholder="Enter text" type="text" name="name" class="class_15" >
+					</div>
+					<button class="class_16" onclick="tts()" type="button">
+						SUBMIT
+					</button>
+					<div class="class_17" >
+						<label class="class_18"  >
+							Speech Output:
+						</label>
+						<a href="#"  style="" class="adlnk" >
+							Download audio output
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+	<section class="class_6" >
+		<div class="class_7" >
+			<div class="class_8" >
+				<h1 class="class_9"  >
+					Sentiment Analysis
+					<br >
+				</h1>
+				<div class="class_10"  >
+					Introducing our Sentiment Analysis feature – an advanced tool that analyzes text to discern underlying emotions and attitudes. With precision and speed, it evaluates the sentiment of written content, providing valuable insights for decision-making and understanding audience reactions. Harness the power of Sentiment Analysis to gain deeper understanding and actionable intelligence from text-based data.
+				</div>
+			</div>
+			<div class="class_11" >
+				<form enctype="multipart/form-data" class="class_12" >
+					<div class="class_13" >
+						<label class="class_14"  >
+							Text:
+						</label>
+						<input placeholder="Enter text" type="text" name="name" class="class_15" >
+					</div>
+					<button class="class_16"  type="button" onclick="senanal()">
+						SUBMIT
+					</button>
+					<div class="class_17" >
+						<label class="class_19"  >
+							Output:
+						</label>
+						<div  class="class_20" >
+							
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+	<section class="class_6" >
+		<div class="class_7" >
+			<div class="class_8" >
+				<h1 class="class_9"  >
+					Translate
+					<br >
+				</h1>
+				<div class="class_10"  >
+					Introducing our Translate feature – a seamless solution for language translation needs. Effortlessly convert text from one language to another, breaking down language barriers and enabling global communication. With accuracy and efficiency, our Translate feature empowers users to understand and convey messages across languages, fostering collaboration and accessibility worldwide.
+				</div>
+			</div>
+			<div class="class_11" >
+				<form enctype="multipart/form-data" class="class_12" >
+					<div class="class_13" >
+						<label class="class_14"  >
+							Text:
+						</label>
+						<input placeholder="Enter text" type="text" name="name" class="class_15" >
+					</div>
+					<div class="class_13" >
+						<label class="class_21"  >
+							Source Language:
+						</label>
+						<input placeholder="Enter source language code" type="text" name="name" class="class_15" >
+					</div>
+					<div class="class_13" >
+						<label class="class_22"  >
+							Target Language:
+						</label>
+						<input placeholder="Enter target language code" type="text" name="name" class="class_15" >
+					</div>
+					<button class="class_16"  type="button" onclick="trans()">
+						SUBMIT
+					</button>
+					<div class="class_17" >
+						<label class="class_23"  >
+							Output:
+						</label>
+						<div  class="class_20" >
+							
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+	
+</body>
+
+<script>
+	function tts(){
+		fetch("https://s48f17ylvl.execute-api.us-east-1.amazonaws.com/beta/t2sconverter",{
+			method:"POST",
+			headers:{
+				"Content-Type":"application/json; charset=UTF-8"
+			},
+			body:JSON.stringify({
+			"text": document.querySelectorAll(".class_15")[0].value
+			})
+		}).then(res=>{
+			return res.json()
+		}).then(resp=>{
+			window.alert("done")
+			document.querySelector(".adlnk").href = resp.body
+		})
+	}
+
+	function senanal(){
+		fetch("https://s48f17ylvl.execute-api.us-east-1.amazonaws.com/beta/sentimentAnalysis",{
+			method:"POST",
+			headers:{
+				"Content-Type":"application/json; charset=UTF-8"
+			},
+			body:JSON.stringify({
+			"text": document.querySelectorAll(".class_15")[1].value
+			})
+		}).then(res=>{
+			return res.json()
+		}).then(resp=>{
+			document.querySelectorAll(".class_20")[0].textContent = resp.Sentiment
+		})
+	}
+
+	function trans(){
+		fetch("https://s48f17ylvl.execute-api.us-east-1.amazonaws.com/beta/translate",{
+			method:"POST",
+			headers:{
+				"Content-Type":"application/json; charset=UTF-8"
+			},
+			body:JSON.stringify({
+			"text": document.querySelectorAll(".class_15")[2].value,
+			"source_language":document.querySelectorAll(".class_15")[3].value,
+			"target_language":document.querySelectorAll(".class_15")[4].value
+			})
+		}).then(res=>{
+			return res.json()
+		}).then(resp=>{
+			document.querySelectorAll(".class_20")[1].textContent = resp.translated_text
+		})
+	}
+</script>
+</html>
